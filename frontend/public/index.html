@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Produtos - Supabase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 Sistema de Gerenciamento de Produtos</h1>
+        </header>
+
+        <div class="main-content">
+            <!-- Formulário de Cadastro/Edição -->
+            <section class="form-section">
+                <h2 id="form-title">Cadastrar Novo Produto</h2>
+                <form id="produto-form">
+                    <input type="hidden" id="produto-id" value="">
+                    
+                    <div class="form-group">
+                        <label for="nome">Nome do Produto *</label>
+                        <input type="text" id="nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao">Descrição *</label>
+                        <textarea id="descricao" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preco">Preço *</label>
+                            <input type="number" id="preco" step="0.01" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantidade">Quantidade *</label>
+                            <input type="number" id="quantidade" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="submit-btn" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" id="cancel-btn" class="btn btn-secondary" style="display: none;">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Seção de Consulta por ID -->
+            <section class="search-section">
+                <h2>Consultar Produto por ID</h2>
+                <div class="search-box">
+                    <input type="number" id="search-id" placeholder="Digite o ID do produto" min="1">
+                    <button type="button" id="search-btn" class="btn btn-info">Buscar</button>
+                </div>
+                <div id="search-result" class="search-result"></div>
+            </section>
+
+            <!-- Lista de Produtos -->
+            <section class="list-section">
+                <div class="section-header">
+                    <h2>Lista de Produtos</h2>
+                    <button type="button" id="refresh-btn" class="btn btn-secondary">🔄 Atualizar</button>
+                </div>
+                
+                <div id="loading" class="loading">Carregando produtos...</div>
+                <div id="produtos-list" class="produtos-list"></div>
+                <div id="error-message" class="error-message"></div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Configuração da URL da API Backend
+        // Substitua pela URL da sua VM backend na AWS
+        // Exemplo: 'http://ec2-xxx-xxx-xxx-xxx.compute-1.amazonaws.com:3000'
+        window.API_BASE_URL = 'http://localhost:3000/api/produtos';
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>
